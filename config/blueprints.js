@@ -10,7 +10,9 @@
  */
 
 module.exports.blueprints = {
-
+  // https://stackoverflow.com/questions/58883318/how-can-i-define-a-custom-parent-route-for-the-default-sails-js-rest-api-urls
+  prefix: '/api',
+  restPrefix: '/v1',
   /***************************************************************************
   *                                                                          *
   * Automatically expose implicit routes for every action in your app?       *
