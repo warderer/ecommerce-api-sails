@@ -7,6 +7,22 @@
 
 module.exports = {
 
+  /**
+    * `UserController.signup()`
+    */
+  signup: async function (req, res) {
+    return res.json({
+      todo: 'signup() is not implemented yet!'
+    });
+  },
 
+  /**
+    * `UserController.login()`
+    */
+  login: async function (req, res) {
+    return res.json({
+      todo: 'login() is not implemented yet!'
+    });
+  }
 };
 

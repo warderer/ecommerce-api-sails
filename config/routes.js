@@ -10,5 +10,7 @@
 
 module.exports.routes = {
 
-
+  // User
+  'POST /api/v1/user/login': 'UserController.login',
+  'POST /api/v1/user/signup': 'UserController.signup',
 };
