@@ -66,7 +66,7 @@ module.exports = {
       // Si el usuario existe, comparo la contraseña
       const comparedPassword = await bcrypt.compare(password, user.password);
       // Genero el Token de JWT
-      const token = AuthService.JWTIssuer({user: user.id}, '1 day');
+      const token = AuthService.JWTIssuer({user: user.id, role: user.role}, '1 day');
       return (comparedPassword)
         ? res.ok({token})
         : res.badRequest({err: 'Password Error'});
