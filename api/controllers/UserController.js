@@ -26,7 +26,7 @@ module.exports = {
         birthDate: joi.date(),
         isActive: joi.boolean()
       });
-      const { email, password, firstName, lastName, gender, role, birthDate } = await schema.validateAsync(req.allParams()); // Validamos los datos recibidos contra el schema definido
+      const { email, password, firstName, lastName, gender, role, birthDate, isActive } = await schema.validateAsync(req.allParams()); // Validamos los datos recibidos contra el schema definido
 
       // Ciframos la contraseña recibida en la petición
       const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -37,7 +37,8 @@ module.exports = {
         lastName,
         gender,
         role,
-        birthDate
+        birthDate,
+        isActive
       }).fetch();
       return res.ok(user);
     } catch (err) {
