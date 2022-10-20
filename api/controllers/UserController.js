@@ -53,10 +53,27 @@ module.exports = {
     * `UserController.login()`
     */
   login: async function (req, res) {
-    return res.json({
-      todo: 'signup() is not implemented yet!'
-    });
-
+    try {
+      const schema = joi.object({
+        email: joi.string().required().email(),
+        password: joi.string().required()
+      });
+      const {email, password} = await schema.validateAsync(req.allParams());
+      const user = await User.findOne({email}); // Busco el correo en la DB
+      if (!user) {
+        return res.badRequest({err: 'User not found'});
+      }
+      // Si el usuario existe, comparo la contraseña
+      const comparedPassword = await bcrypt.compare(password, user.password);
+      return (comparedPassword)
+        ? res.ok({user})
+        : res.badRequest({err: 'Password Error'});
+    } catch (err) {
+      if (err.name === 'ValidationError') {
+        return res.badRequest({err}).json();
+      }
+      return res.serverError(err).json();
+    }
   }
 };
 
