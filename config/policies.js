@@ -19,4 +19,31 @@ module.exports.policies = {
 
   // '*': true,
 
+  UserController: {
+    // Apply the 'isLoggedIn' policy to the 'update' action of 'UserController'
+    '*': 'isLoggedIn', // Protegemos todas las rutas de usuario por defecto
+    'login': true, // Indicamos que login es una ruta libre
+    'signup': true, // Indicamos que signup es una ruta libre
+    'destroy': ['isLoggedIn','isAdmin']
+  },
+
+  ItemController: {
+    'create': ['isLoggedIn','isAdmin'],
+    'update': ['isLoggedIn','isAdmin'],
+    'destroy': ['isLoggedIn','isAdmin']
+  }
+
+  /*
+  Consultar cuales son las otras Rutas que autogenera Sails:
+  https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes
+  'find'
+  'findOne'
+  'create'
+  'update'
+  'destroy'
+  'add'
+  'remove'
+  'replace'
+  */
+
 };
