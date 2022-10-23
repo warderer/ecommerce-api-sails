@@ -1,4 +1,3 @@
-
 module.exports = async function(req, res, next) {
 
   // Valido que exista la cabecera de Authorization
@@ -7,7 +6,7 @@ module.exports = async function(req, res, next) {
   }
 
   // Valido que el token sea correcto
-  const token = req.headers.authorization;
+  const [bearer, token] = req.headers.authorization.split(' ');
   const decodedToken = AuthService.JWTVerify(token);
 
   // Verificar que el usuario del token aún exista en la base de datos

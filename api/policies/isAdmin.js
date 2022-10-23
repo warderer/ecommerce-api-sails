@@ -7,7 +7,7 @@ module.exports = async function(req, res, next) {
   }
 
   // Valido que el token sea correcto
-  const token = req.headers.authorization;
+  const [bearer, token] = req.headers.authorization.split(' ');
   const decodedToken = AuthService.JWTVerify(token);
 
   // Valido que sea usuario con rol de admin
