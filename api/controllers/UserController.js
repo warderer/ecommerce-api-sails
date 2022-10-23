@@ -40,6 +40,7 @@ module.exports = {
         birthDate,
         isActive
       }).fetch();
+      delete user.password; // Removemos de la respuesta la contraseña
       return res.ok(user);
     } catch (err) {
       if (err.name === 'ValidationError') {
